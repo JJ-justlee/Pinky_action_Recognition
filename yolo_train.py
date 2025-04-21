@@ -1,7 +1,12 @@
 from ultralytics import YOLO
 
-# Load YOLOv10n model from scratch
-model = YOLO("yolov8n")
+#from small to large: n, s, m, l
+model = YOLO("yolov8m")
 
 # Train the model
-model.train(data="dataset.yaml", epochs=100, imgsz=416) #put your yaml path here
+model.train(
+    data="pinky_imageLabel/dataset.yaml", #put your yaml path here
+    epochs=100, 
+    imgsz=416, 
+    name='result_yolo8m'
+    )

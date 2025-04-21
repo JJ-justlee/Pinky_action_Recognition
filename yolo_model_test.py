@@ -1,33 +1,26 @@
 from ultralytics import YOLO
 import cv2
 
-def run_webcam_yolo():
+model = YOLO('runs/detect/result_yolo8m/weights/best.pt')  # 모델 경로
 
-    model = YOLO("yolov8n") #put your model path here 
-    
-    cap = cv2.VideoCapture(2)
-    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
-    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
+cap = cv2.VideoCapture(0)
 
-    while True:
-        ret, frame = cap.read()
-        if not ret:
-            print("can not read frame")
-            break
+while cap.isOpened():
+    ret, frame = cap.read()
+    if not ret:
+        break
 
-        cropped = frame[250:920, 300:1700]  # y1:y2, x1:x2
+    # 예측
+    results = model.predict(source=frame, save=False, conf=0.8, verbose=False)
 
-        results = model.predict(source=cropped, conf=0.5, save=False, verbose=False)
-        
-        for result in results:
-            annotated_frame = result.plot()
-            cv2.imshow("YOLO Detection (Cropped View)", annotated_frame)
+    # results[0]은 첫 프레임 결과
+    annotated_frame = results[0].plot()
 
-        if cv2.waitKey(1) & 0xFF == 27:
-            break
+    # 결과 시각화
+    cv2.imshow("YOLOv8 Detection", annotated_frame)
 
-    cap.release()
-    cv2.destroyAllWindows()
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
 
-if __name__ == "__main__":
-    run_webcam_yolo()
+cap.release()
+cv2.destroyAllWindows()
