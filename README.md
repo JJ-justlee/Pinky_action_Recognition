@@ -1,2 +1,2 @@
 # Pinky_action_Recognition
-pinky state recognition between fall and standing
+A state recognition system for the Pinky robot using YOLO, classifying whether it is standing or has fallen
