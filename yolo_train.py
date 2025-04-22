@@ -1,7 +1,7 @@
 from ultralytics import YOLO
 import os
 
-base_path = r'/home/addinedu/Documents/GitHub/Pinky_action_Recognition/runs/detect'
+base_path = r'/Pinky_action_Recognition/runs/detect'
 yolo_model_path = os.path.join(base_path, 'yolov10')
 
 os.makedirs(yolo_model_path, exist_ok=True)
