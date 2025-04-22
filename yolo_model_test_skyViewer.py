@@ -3,7 +3,7 @@ import cv2
 
 def run_webcam_yolo():
 
-    model = YOLO('runs/detect/result_yolo8s/weights/best.pt') #put your model path here 
+    model = YOLO('/home/addinedu/Documents/GitHub/Pinky_action_Recognition/runs/detect/yolov10/2_result_yolov10s/weights/best.pt') #put your model path here 
     
     cap = cv2.VideoCapture(2)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)

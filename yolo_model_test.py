@@ -1,7 +1,7 @@
 from ultralytics import YOLO
 import cv2
 
-model = YOLO('runs/detect/result_yolo8m/weights/best.pt')  # 모델 경로
+model = YOLO('Pinky_action_Recognition/runs/detect/result_yolo8m/weights/best.pt')  # 모델 경로
 
 cap = cv2.VideoCapture(0)
 
